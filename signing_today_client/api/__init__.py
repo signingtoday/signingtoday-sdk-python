@@ -1,0 +1,17 @@
+from __future__ import absolute_import
+
+# flake8: noqa
+
+# import apis into api package
+from signing_today_client.api.identities_api import IdentitiesApi
+from signing_today_client.api.organizations_api import OrganizationsApi
+from signing_today_client.api.signature_transactions_api import SignatureTransactionsApi
+from signing_today_client.api.signatures_api import SignaturesApi
+from signing_today_client.api.tokens_api import TokensApi
+from signing_today_client.api.users_api import UsersApi
+from signing_today_client.api.bit4id_pathgroup_identities_api import Bit4idPathgroupIdentitiesApi
+from signing_today_client.api.bit4id_pathgroup_organizations_api import Bit4idPathgroupOrganizationsApi
+from signing_today_client.api.bit4id_pathgroup_signature_transactions_api import Bit4idPathgroupSignatureTransactionsApi
+from signing_today_client.api.bit4id_pathgroup_signatures_api import Bit4idPathgroupSignaturesApi
+from signing_today_client.api.bit4id_pathgroup_tokens_api import Bit4idPathgroupTokensApi
+from signing_today_client.api.bit4id_pathgroup_users_api import Bit4idPathgroupUsersApi
