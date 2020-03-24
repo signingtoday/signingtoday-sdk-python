@@ -3,8 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Organization**](Organization.md) |  | [optional] 
-**meta** | [**MetaDataSuccess**](MetaDataSuccess.md) |  | [optional] 
+**access_token** | **str** |  | [optional] 
+**token_type** | **str** |  | [optional] 
+**refresh_token** | **str** |  | [optional] 
+**expires_in** | **int** |  | [optional] 
+**scope** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,25 +1,30 @@
 # signing_today_client.Bit4idPathgroupUsersApi
 
-All URIs are relative to *https://sandbox.signingtoday.com/api/v1*
+All URIs are relative to *https://web.sandbox.signingtoday.com/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user**](Bit4idPathgroupUsersApi.md#create_user) | **POST** /{organization-id}/users | Create a user of the organization
-[**get_user**](Bit4idPathgroupUsersApi.md#get_user) | **GET** /{organization-id}/users/{user-id} | Get information about an user
-[**list_users**](Bit4idPathgroupUsersApi.md#list_users) | **GET** /{organization-id}/users | Enumerate the users of an organization
-[**update_user**](Bit4idPathgroupUsersApi.md#update_user) | **PUT** /{organization-id}/users/{user-id} | Edit one or more user properties
+[**user_id_delete**](Bit4idPathgroupUsersApi.md#user_id_delete) | **DELETE** /user/{id} | Enable or disable a User
+[**user_id_get**](Bit4idPathgroupUsersApi.md#user_id_get) | **GET** /user/{id} | Retrieve a User
+[**user_id_identities_get**](Bit4idPathgroupUsersApi.md#user_id_identities_get) | **GET** /user/{id}/identities | Retrieve User identities
+[**user_id_put**](Bit4idPathgroupUsersApi.md#user_id_put) | **PUT** /user/{id} | Update a User
+[**user_id_role_put**](Bit4idPathgroupUsersApi.md#user_id_role_put) | **PUT** /user/{id}/role | Change the User role
+[**users_get**](Bit4idPathgroupUsersApi.md#users_get) | **GET** /users | Retrieve Users
+[**users_groups_get**](Bit4idPathgroupUsersApi.md#users_groups_get) | **GET** /users/groups | Retrieve UserGroups
+[**users_groups_post**](Bit4idPathgroupUsersApi.md#users_groups_post) | **POST** /users/groups | Create a new UserGroups
+[**users_post**](Bit4idPathgroupUsersApi.md#users_post) | **POST** /users | Create a new User
 
 
-# **create_user**
-> InlineResponse2015 create_user(organization_id, create_user)
+# **user_id_delete**
+> user_id_delete(id, enabled=enabled)
 
-Create a user of the organization
+Enable or disable a User
 
-This API allows to create a new user of the organization. 
+This API allows to **enable** or **disable** a User account. 
 
 ### Example
 
-* Api Key Authentication (ApiKeyAuth):
+* OAuth Authentication (OAuth2):
 ```python
 from __future__ import print_function
 import time
@@ -27,134 +32,66 @@ import signing_today_client
 from signing_today_client.rest import ApiException
 from pprint import pprint
 configuration = signing_today_client.Configuration()
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
-configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.Bit4idPathgroupUsersApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
-create_user = signing_today_client.CreateUser() # CreateUser | The new user object to create
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    id = '737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4' # str | The value of _the unique id_
+enabled = False # bool | This is a _boolean_ parameter. If true the User is **enabled**  (optional) (default to False)
 
-try:
-    # Create a user of the organization
-    api_response = api_instance.create_user(organization_id, create_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling Bit4idPathgroupUsersApi->create_user: %s\n" % e)
+    try:
+        # Enable or disable a User
+        api_instance.user_id_delete(id, enabled=enabled)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->user_id_delete: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **str**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &#39;api-demo&#39;]
- **create_user** | [**CreateUser**](CreateUser.md)| The new user object to create | 
+ **id** | [**str**](.md)| The value of _the unique id_ | 
+ **enabled** | **bool**| This is a _boolean_ parameter. If true the User is **enabled**  | [optional] [default to False]
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+void (empty response body)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Created |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**409** | Conflict |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_user**
-> InlineResponse2015 get_user(organization_id, user_id)
-
-Get information about an user
-
-This API allows to get information about an user. 
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-```python
-from __future__ import print_function
-import time
-import signing_today_client
-from signing_today_client.rest import ApiException
-from pprint import pprint
-configuration = signing_today_client.Configuration()
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
-
-# Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
-configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.Bit4idPathgroupUsersApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
-user_id = signing_today_client.Id() # Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
-
-try:
-    # Get information about an user
-    api_response = api_instance.get_user(organization_id, user_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling Bit4idPathgroupUsersApi->get_user: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization_id** | **str**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &#39;api-demo&#39;]
- **user_id** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | 
-
-### Return type
-
-[**InlineResponse2015**](InlineResponse2015.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**204** | The request has been satisfyied. No output. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_users**
-> InlineResponse20012 list_users(organization_id, where_membership_id=where_membership_id, where_email=where_email, where_last_name=where_last_name, where_first_name=where_first_name, page=page, count=count)
+# **user_id_get**
+> User user_id_get(id)
 
-Enumerate the users of an organization
+Retrieve a User
 
-This API allows to enumerate the users of an organization. 
+This API allows to retrieve a User.
 
 ### Example
 
-* Api Key Authentication (ApiKeyAuth):
+* OAuth Authentication (OAuth2):
 ```python
 from __future__ import print_function
 import time
@@ -162,76 +99,65 @@ import signing_today_client
 from signing_today_client.rest import ApiException
 from pprint import pprint
 configuration = signing_today_client.Configuration()
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
-configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.Bit4idPathgroupUsersApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
-where_membership_id = 'jdo' # str | Returns the users that have the specified id (optional)
-where_email = 'test@mail.com' # str | Returns the users that have the specified email (optional)
-where_last_name = 'Doe' # str | Returns the users that have the specified last name (optional)
-where_first_name = 'John' # str | Returns the users that have the specified first name (optional)
-page = 1 # int | Restricts the search to the chosen page (optional)
-count = 100 # int | Sets the number of users per page to display (optional) (default to 100)
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    id = '737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4' # str | The value of _the unique id_
 
-try:
-    # Enumerate the users of an organization
-    api_response = api_instance.list_users(organization_id, where_membership_id=where_membership_id, where_email=where_email, where_last_name=where_last_name, where_first_name=where_first_name, page=page, count=count)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling Bit4idPathgroupUsersApi->list_users: %s\n" % e)
+    try:
+        # Retrieve a User
+        api_response = api_instance.user_id_get(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->user_id_get: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **str**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &#39;api-demo&#39;]
- **where_membership_id** | **str**| Returns the users that have the specified id | [optional] 
- **where_email** | **str**| Returns the users that have the specified email | [optional] 
- **where_last_name** | **str**| Returns the users that have the specified last name | [optional] 
- **where_first_name** | **str**| Returns the users that have the specified first name | [optional] 
- **page** | **int**| Restricts the search to the chosen page | [optional] 
- **count** | **int**| Sets the number of users per page to display | [optional] [default to 100]
+ **id** | [**str**](.md)| The value of _the unique id_ | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**User**](User.md)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**200** | The data matching the selection parameters. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_user**
-> InlineResponse2015 update_user(organization_id, user_id, update_user)
+# **user_id_identities_get**
+> list[Identity] user_id_identities_get(id)
 
-Edit one or more user properties
+Retrieve User identities
 
-This API allows to edit one or more user properties. 
+This API allows to retrieve user identities.
 
 ### Example
 
-* Api Key Authentication (ApiKeyAuth):
+* OAuth Authentication (OAuth2):
 ```python
 from __future__ import print_function
 import time
@@ -239,55 +165,468 @@ import signing_today_client
 from signing_today_client.rest import ApiException
 from pprint import pprint
 configuration = signing_today_client.Configuration()
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
-configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.Bit4idPathgroupUsersApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
-user_id = signing_today_client.Id() # Id | The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user 
-update_user = signing_today_client.UpdateUser() # UpdateUser | User properties to be edited
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    id = '737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4' # str | The value of _the unique id_
 
-try:
-    # Edit one or more user properties
-    api_response = api_instance.update_user(organization_id, user_id, update_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling Bit4idPathgroupUsersApi->update_user: %s\n" % e)
+    try:
+        # Retrieve User identities
+        api_response = api_instance.user_id_identities_get(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->user_id_identities_get: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **str**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &#39;api-demo&#39;]
- **user_id** | [**Id**](.md)| The **user-id** is the uuid code that identifies a user of an organization. It is used as a path parameter to restrict the requested operation to the scope of that user  | 
- **update_user** | [**UpdateUser**](UpdateUser.md)| User properties to be edited | 
+ **id** | [**str**](.md)| The value of _the unique id_ | 
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**list[Identity]**](Identity.md)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
+**200** | The identities associated to the user. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_id_put**
+> user_id_put(id, user)
+
+Update a User
+
+This API allows to update a User.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    id = '737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4' # str | The value of _the unique id_
+user = signing_today_client.User() # User | User replacing current object.
+
+    try:
+        # Update a User
+        api_instance.user_id_put(id, user)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->user_id_put: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**str**](.md)| The value of _the unique id_ | 
+ **user** | [**User**](User.md)| User replacing current object. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_id_role_put**
+> user_id_role_put(id, new_role)
+
+Change the User role
+
+This API allows to change the permissions associated to the users, (**capabilities**) according to predefined user roles. 
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    id = '737dc132-a3f0-11e9-a2a3-2a2ae2dbcce4' # str | The value of _the unique id_
+new_role = 'instructor' # str | The new **role** of the User. Allowed values are **admin**, **instructor**, **signer** 
+
+    try:
+        # Change the User role
+        api_instance.user_id_role_put(id, new_role)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->user_id_role_put: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**str**](.md)| The value of _the unique id_ | 
+ **new_role** | **str**| The new **role** of the User. Allowed values are **admin**, **instructor**, **signer**  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**404** | The resource was not found. |  -  |
+**409** | Cannot satisfy the request because the resource is in an illegal status. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **users_get**
+> UsersGetResponse users_get(top=top, skip=skip, count=count, order_by=order_by, filter=filter)
+
+Retrieve Users
+
+This allows to get the list of the Users of an Organization.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    top = 32 # int | A number of results to return. Applied after **$skip**  (optional)
+skip = 64 # int | An offset into the collection of results (optional)
+count = true # bool | If true, the server includes the count of all the items in the response  (optional)
+order_by = '$orderBy=updatedAt' # str | An ordering definition (eg. $orderBy=updatedAt,desc) (optional)
+filter = '$filter=name==\"Milk\"' # str | A filter definition (eg. $filter=name == \"Milk\" or surname == \"Bread\") (optional)
+
+    try:
+        # Retrieve Users
+        api_response = api_instance.users_get(top=top, skip=skip, count=count, order_by=order_by, filter=filter)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->users_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **top** | **int**| A number of results to return. Applied after **$skip**  | [optional] 
+ **skip** | **int**| An offset into the collection of results | [optional] 
+ **count** | **bool**| If true, the server includes the count of all the items in the response  | [optional] 
+ **order_by** | **str**| An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) | [optional] 
+ **filter** | **str**| A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) | [optional] 
+
+### Return type
+
+[**UsersGetResponse**](UsersGetResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The data matching the selection parameters. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **users_groups_get**
+> UserGroupGetResponse users_groups_get(top=top, skip=skip, count=count, order_by=order_by, filter=filter)
+
+Retrieve UserGroups
+
+This API allows to get the list of the UserGroups.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    top = 32 # int | A number of results to return. Applied after **$skip**  (optional)
+skip = 64 # int | An offset into the collection of results (optional)
+count = true # bool | If true, the server includes the count of all the items in the response  (optional)
+order_by = '$orderBy=updatedAt' # str | An ordering definition (eg. $orderBy=updatedAt,desc) (optional)
+filter = '$filter=name==\"Milk\"' # str | A filter definition (eg. $filter=name == \"Milk\" or surname == \"Bread\") (optional)
+
+    try:
+        # Retrieve UserGroups
+        api_response = api_instance.users_groups_get(top=top, skip=skip, count=count, order_by=order_by, filter=filter)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->users_groups_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **top** | **int**| A number of results to return. Applied after **$skip**  | [optional] 
+ **skip** | **int**| An offset into the collection of results | [optional] 
+ **count** | **bool**| If true, the server includes the count of all the items in the response  | [optional] 
+ **order_by** | **str**| An ordering definition (eg. $orderBy&#x3D;updatedAt,desc) | [optional] 
+ **filter** | **str**| A filter definition (eg. $filter&#x3D;name &#x3D;&#x3D; \&quot;Milk\&quot; or surname &#x3D;&#x3D; \&quot;Bread\&quot;) | [optional] 
+
+### Return type
+
+[**UserGroupGetResponse**](UserGroupGetResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The data matching the selection parameters. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **users_groups_post**
+> users_groups_post(user_group)
+
+Create a new UserGroups
+
+This API allows to create a new UserGroups.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    user_group = [signing_today_client.UserGroup()] # list[UserGroup] | UserGroup list to be added.
+
+    try:
+        # Create a new UserGroups
+        api_instance.users_groups_post(user_group)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->users_groups_post: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_group** | [**list[UserGroup]**](UserGroup.md)| UserGroup list to be added. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request has been satisfyied. No output. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **users_post**
+> str users_post(create_user_request)
+
+Create a new User
+
+This API allows to create a new User.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+```python
+from __future__ import print_function
+import time
+import signing_today_client
+from signing_today_client.rest import ApiException
+from pprint import pprint
+configuration = signing_today_client.Configuration()
+# Configure OAuth2 access token for authorization: OAuth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://web.sandbox.signingtoday.com/api
+configuration.host = "https://web.sandbox.signingtoday.com/api"
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.Bit4idPathgroupUsersApi(api_client)
+    create_user_request = signing_today_client.CreateUserRequest() # CreateUserRequest | 
+
+    try:
+        # Create a new User
+        api_response = api_instance.users_post(create_user_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling Bit4idPathgroupUsersApi->users_post: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_user_request** | [**CreateUserRequest**](CreateUserRequest.md)|  | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The request has been satisfyied, new resource created. |  -  |
+**400** | Result of a client passing incorrect or invalid data. |  -  |
+**401** | User authentication was not effective (e.g. not provided, invalid or expired). |  -  |
+**403** | User is not allowed to perform the request. |  -  |
+**500** | Internal failure of the service. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

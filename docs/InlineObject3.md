@@ -3,8 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**channel_pub** | **str** | The channel pub | [optional] 
-**channel_sub** | **str** | The channel sub | [optional] 
+**file** | **file** | The file to upload | 
+**filename** | **str** | The name of the file | 
+**resource_type** | **str** |  | 
+**title** | **str** | User-defined title of the resource. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

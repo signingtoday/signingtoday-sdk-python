@@ -1,12 +1,11 @@
 # coding: utf-8
 
 """
-    Signing Today API
+    Signing Today Web
 
-    KlNpZ25pbmcgVG9kYXkqIGVuYWJsZXMgc2VhbWxlc3MgaW50ZWdyYXRpb24gb2YgZGlnaXRhbCBzaWduYXR1cmVzIGludG8gYW55CndlYnNpdGUgYnkgdGhlIHVzZSBvZiBlYXN5IHJlcXVlc3RzIHRvIG91ciBBUEkuIFRoaXMgaXMgdGhlIHNtYXJ0IHdheSBvZgphZGRpbmcgZGlnaXRhbCBzaWduYXR1cmUgc3VwcG9ydCB3aXRoIGEgZ3JlYXQgdXNlciBleHBlcmllbmNlLgoKCipTaWduaW5nIFRvZGF5IEFQSXMqIHVzZSBIVFRQIG1ldGhvZHMgYW5kIGFyZSBSRVNUZnVsIGJhc2VkLCBtb3Jlb3ZlciB0aGV5CmFyZSBwcm90ZWN0ZWQgYnkgYSAqc2VydmVyIHRvIHNlcnZlciBhdXRoZW50aWNhdGlvbiogc3RhbmRhcmQgYnkgdGhlIHVzZSBvZgp0b2tlbnMuCgoKKlNpZ25pbmcgVG9kYXkgQVBJcyogY2FuIGJlIHVzZWQgaW4gdGhlc2UgZW52aXJvbm1lbnRzOgoKCnwgRW52aXJvbm1lbnQgfCBEZXNjcmlwdGlvbiB8IEVuZHBvaW50IHwKfCAtLS0tLS0tLS0tLSB8IC0tLS0tLS0tLS0tIHwgLS0tLS0tLS0gfAp8IFNhbmRib3ggICAgIHwgVGVzdCBlbnZpcm9ubWVudCB8IGBodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbWAgfAp8IExpdmUgICAgICAgIHwgUHJvZHVjdGlvbiBlbnZpcm9ubWVudCB8IGBodHRwczovL2FwaS5zaWduaW5ndG9kYXkuY29tYCB8CgoKRm9yIGV2ZXJ5IHNpbmdsZSByZXF1ZXN0IHRvIFNpZ25pbmcgVG9kYXkgaGFzIHRvIGJlIGRlZmluZWQgdGhlIGZvbGxvd2luZwoqSFRUUCogaGVhZGVyOgotIGBBdXRob3JpemF0aW9uYCwgd2hpY2ggY29udGFpbnMgdGhlIGF1dGhlbnRpY2F0aW9uIHRva2VuLgoKSWYgdGhlIHJlcXVlc3QgaGFzIGEgYm9keSB0aGFuIGFub3RoZXIgKkhUVFAqIGhlYWRlciBpcyByZXF1ZXN0ZWQ6Ci0gYENvbnRlbnQtVHlwZWAsIHdpdGggYGFwcGxpY2F0aW9uL2pzb25gIHZhbHVlLgoKCkZvbGxvd3MgYW4gZXhhbXBsZSBvZiB1c2FnZSB0byBlbnVtZXJhdGUgYWxsIHRoZSB1c2VyIG9mICpteS1vcmcqCm9yZ2FuaXphdGlvbi4KCioqRXhhbXBsZSoqCgpgYGBqc29uCiQgY3VybCBodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbS9hcGkvdjEvbXktb3JnL3VzZXJzIFwKICAgIC1IICdBdXRob3JpemF0aW9uOiBUb2tlbiA8YWNjZXNzLXRva2VuPicKYGBgCgojIyBIVFRQIG1ldGhvZHMgdXNlZAoKQVBJcyB1c2UgdGhlIHJpZ2h0IEhUVFAgdmVyYiBpbiBldmVyeSBzaXR1YXRpb24uCgp8IE1ldGhvZCAgIHwgRGVzY3JpcHRpb24gICAgICAgICAgICAgICAgICAgIHwKfCAtLS0tLS0tLSB8IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSB8CnwgYEdFVGAgICAgfCBSZXF1ZXN0IGRhdGEgZnJvbSBhIHJlc291cmNlICAgfAp8IGBQT1NUYCAgIHwgU2VuZCBkYXRhIHRvIGNyZWF0ZSBhIHJlc291cmNlIHwKfCBgUFVUYCAgICB8IFVwZGF0ZSBhIHJlc291cmNlICAgICAgICAgICAgICB8CnwgYFBBVENIYCAgfCBQYXJ0aWFsbHkgdXBkYXRlIGEgcmVzb3VyY2UgICAgfAp8IGBERUxFVEVgIHwgRGVsZXRlIGEgcmVzb3Vyc2UgICAgICAgICAgICAgIHwKCgojIyBSZXNwb25zZSBkZWZpbml0aW9uCgpBbGwgdGhlIHJlc3BvbnNlIGFyZSBpbiBKU09OIGZvcm1hdC4KQXMgcmVzcG9uc2UgdG8gYSByZXF1ZXN0IG9mIGFsbCB1c2VycyBvZiBhbiBvcmdhbml6YXRpb24geW91IHdpbGwgaGF2ZSBhCnJlc3VsdCBsaWtlIHRoaXM6CgpgYGBqc29uCnsKICAgICJwYWdpbmF0aW9uIjogewogICAgICAiY291bnQiOiA3NSwKICAgICAgInByZXZpb3VzIjogImh0dHBzOi8vc2FuZGJveC5zaWduaW5ndG9kYXkuY29tL2FwaS92MS9teS1vcmcvdXNlcnM/cGFnZT0xIiwKICAgICAgIm5leHQiOiAiaHR0cHM6Ly9zYW5kYm94LnNpZ25pbmd0b2RheS5jb20vYXBpL3YxL215LW9yZy91c2Vycz9wYWdlPTMiLAogICAgICAicGFnZXMiOiA4LAogICAgICAicGFnZSI6IDIKICAgIH0sCiAgICAibWV0YSI6IHsKICAgICAgImNvZGUiOiAyMDAKICAgIH0sCiAgICAiZGF0YSI6IFsKICAgICAgewogICAgICAgICJpZCI6ICJqZG8iLAogICAgICAgICJzdGF0dXMiOiAiZW5hYmxlZCIsCiAgICAgICAgInR5cGUiOiAiQmFzaWMgdXNlciBhY2NvdW50IiwKICAgICAgICAiZW1haWwiOiBqb2huZG9lQGR1bW15ZW1haWwuY29tLAogICAgICAgICJmaXJzdF9uYW1lIjogIkpvaG4iLAogICAgICAgICJsYXN0X25hbWUiOiAiRG9lIiwKICAgICAgICAid2FsbGV0IjogW10sCiAgICAgICAgImNyZWF0ZWRfYnkiOiAic3lzdGVtIiwKICAgICAgICAib3duZXIiOiBmYWxzZSwKICAgICAgICAiYXV0b21hdGljIjogZmFsc2UsCiAgICAgICAgInJhbyI6IGZhbHNlCiAgICAgIH0sCiAgICAgIC4uLgogICAgXQogIH0KYGBgCgpUaGUgSlNPTiBvZiB0aGUgcmVzcG9uc2UgaXMgbWFkZSBvZiB0aHJlZSBwYXJ0czoKLSBQYWdpbmF0aW9uCi0gTWV0YQotIERhdGEKCiMjIyBQYWdpbmF0aW9uCgoqUGFnaW5hdGlvbiogb2JqZWN0IGFsbG93cyB0byBzcGxpdCB0aGUgcmVzcG9uc2UgaW50byBwYXJ0cyBhbmQgdGhlbiB0bwpyZWJ1aWxkIGl0IHNlcXVlbnRpYWxseSBieSB0aGUgdXNlIG9mIGBuZXh0YCBhbmQgYHByZXZpb3VzYCBwYXJhbWV0ZXJzLCBieQp3aGljaCB5b3UgZ2V0IHByZXZpb3VzIGFuZCBmb2xsb3dpbmcgYmxvY2tzLiBUaGUgKlBhZ2luYXRpb24qIGlzIHByZXNlbnQKb25seSBpZiB0aGUgcmVzcG9uc2UgaXMgYSBsaXN0IG9mIG9iamVjdHMuCgpUaGUgZ2VuZXJhbCBzdHJ1Y3R1cmUgb2YgKlBhZ2luYXRpb24qIG9iamVjdCBpcyB0aGUgZm9sbG93aW5nOgoKYGBganNvbgp7CiAgICAicGFnaW5hdGlvbiI6IHsKICAgICAgImNvdW50IjogNzUsCiAgICAgICJwcmV2aW91cyI6ICJodHRwczovL3NhbmRib3guc2lnbmluZ3RvZGF5LmNvbS9hcGkvdjEvbXktb3JnL3VzZXJzP3BhZ2U9MSIsCiAgICAgICJuZXh0IjogImh0dHBzOi8vc2FuZGJveC5zaWduaW5ndG9kYXkuY29tL2FwaS92MS9teS1vcmcvdXNlcnM/cGFnZT0zIiwKICAgICAgInBhZ2VzIjogOCwKICAgICAgInBhZ2UiOiAyCiAgICB9LAogICAgLi4uCiAgfQpgYGAKCiMjIyBNZXRhCgoqTWV0YSogb2JqZWN0IGlzIHVzZWQgdG8gZW5yaWNoIHRoZSBpbmZvcm1hdGlvbiBhYm91dCB0aGUgcmVzcG9uc2UuIEluIHRoZQpwcmV2aW91cyBleGFtcGxlLCBhIHN1Y2Nlc3NmdWwgY2FzZSBvZiByZXNwb25zZSwgKk1ldGEqIHdpbGwgaGF2ZSB2YWx1ZQpgc3RhdHVzOiAyWFhgLiBJbiBjYXNlIG9mIHVuc3VjY2Vzc2Z1bCByZXNwb25zZSwgKk1ldGEqIHdpbGwgaGF2ZSBmdXJ0aGVyCmluZm9ybWF0aW9uLCBhcyBmb2xsb3dzOgoKYGBganNvbgp7CiAgICAibWV0YSI6IHsKICAgICAgImNvZGUiOiA8SFRUUCBTVEFUVVMgQ09ERT4sCiAgICAgICJlcnJvcl90eXBlIjogPFNUQVRVUyBDT0RFIERFU0NSSVBUSU9OPiwKICAgICAgImVycm9yX21lc3NhZ2UiOiA8RVJST1IgREVTQ1JJUFRJT04+CiAgICB9CiAgfQpgYGAKCiMjIyBEYXRhCgoqRGF0YSogb2JqZWN0IG91dHB1dHMgYXMgb2JqZWN0IG9yIGxpc3Qgb2YgdGhlbS4gQ29udGFpbnMgdGhlIGV4cGVjdGVkIGRhdGEKYXMgcmVxdWVzdGVkIHRvIHRoZSBBUEkuCgojIyBTZWFyY2ggZmlsdGVycwoKU2VhcmNoIGZpbHRlcnMgb2YgdGhlIEFQSSBoYXZlIHRoZSBmb2xsb3dpbmcgc3RydWN0dXJlOgoKYHdoZXJlX0FUVFJJQlVURU5BTUVgPWBWQUxVRWAKCkluIHRoaXMgd2F5IHlvdSBtYWtlIGEgY2FzZS1zZW5zaXRpdmUgc2VhcmNoIG9mICpWQUxVRSouIFlvdSBjYW4gZXh0ZW5kIGl0CnRocm91Z2ggdGhlIERqYW5nbyBsb29rdXAsIG9idGFpbmluZyBtb3JlIHNwZWNpZmljIGZpbHRlcnMuIEZvciBleGFtcGxlOgoKYHdoZXJlX0FUVFJJQlVURU5BTUVfX0xPT0tVUGA9YFZBTFVFYAoKd2hlcmUgKkxPT0tVUCogY2FuIGJlIHJlcGxhY2VkIHdpdGggYGljb250YWluc2AgdG8gaGF2ZSBhIHBhcnRpYWwgaW5zZW5zaXRpdmUKcmVzZWFyY2gsIHdoZXJlCgpgd2hlcmVfZmlyc3RfbmFtZV9faWNvbnRhaW5zYD1gQ0hhYAoKbWF0Y2hlcyB3aXRoIGV2ZXJ5IHVzZXIgdGhhdCBoYXZlIHRoZSAqY2hhKiBzdHJpbmcgaW4gdGhlaXIgbmFtZSwgd2l0aApubyBkaWZmZXJlbmNlcyBiZXR3ZWVuIGNhcGl0YWwgYW5kIGxvd2VyIGNhc2VzLgoKW0hlcmVdKGh0dHBzOi8vZG9jcy5kamFuZ29wcm9qZWN0LmNvbS9lbi8xLjExL3JlZi9tb2RlbHMvcXVlcnlzZXRzLyNmaWVsZC1sb29rdXBzKQp0aGUgbGlzdCBvZiB0aGUgbG9va3Vwcy4KCiMjIFdlYmhvb2tzCgpTaWduaW5nIFRvZGF5IHN1cHBvcnRzIHdlYmhvb2tzIGZvciB0aGUgdXBkYXRlIG9mIERTVHMgYW5kIGlkZW50aXRpZXMgc3RhdHVzLgpZb3UgY2FuIGNob29zZSBpZiB0byB1c2Ugb3Igbm90IHdlYmhvb2tzIGFuZCBpZiB5b3Ugd2FudCB0byByZWNlaXZlIHVwZGF0ZXMKYWJvdXQgRFNUcyBhbmQvb3IgaWRlbnRpdGllcy4gWW91IGNhbiBjb25maWd1cmF0ZSBpdCBvbiBhcHBsaWNhdGlvbiB0b2tlbgpsZXZlbCwgaW4gdGhlICp3ZWJob29rKiBmaWVsZCwgYXMgZm9sbG93czoKCmBgYGpzb24KIndlYmhvb2tzIjogewogICJkc3QiOiAiVVJMIiwKICAiaWRlbnRpdHkiOiAiVVJMIgogIH0KYGBgCgojIyMgRFNUcyBzdGF0dXMgdXBkYXRlCgpEU1RzIHNlbmQgdGhlIGZvbGxvd2luZyBzdGF0dXMgdXBkYXRlczoKLSAqKkRTVF9TVEFUVVNfQ0hBTkdFRCoqOiB3aGVuZXZlciB0aGUgRFNUIGNoYW5nZXMgaXRzIHN0YXR1cwotICoqU0lHTkFUVVJFX1NUQVRVU19DSEFOR0VEKio6IHdoZW5ldmVyIG9uZSBvZiB0aGUgc2lnbmF0dXJlcyBjaGFuZ2VzIGl0cwpzdGF0dXMKCiMjIyMgRFNUX1NUQVRVU19DSEFOR0VECgpTZW5kcyB0aGUgZm9sbG93aW5nIGluZm9ybWF0aW9uOgoKYGBganNvbgp7CiAgICAibWVzc2FnZSI6ICJEU1RfU1RBVFVTX0NIQU5HRUQiLAogICAgImRhdGEiOiB7CiAgICAgICJzdGF0dXMiOiAiPERTVF9TVEFUVVM+IiwKICAgICAgImRzdCI6ICI8RFNUX0lEPiIsCiAgICAgICJyZWFzb24iOiAiPERTVF9SRUFTT04+IgogICAgfQogIH0KYGBgCgojIyMjIFNJR05BVFVSRV9TVEFUVVNfQ0hBTkdFRAoKU2VuZHMgdGhlIGZvbGxvd2luZyBpbmZvcm1hdGlvbjoKCmBgYGpzb24KewogICAgIm1lc3NhZ2UiOiAiU0lHTkFUVVJFX1NUQVRVU19DSEFOR0VEIiwKICAgICJkYXRhIjogewogICAgICAic3RhdHVzIjogIjxTSUdOQVRVUkVfU1RBVFVTPiIsCiAgICAgICJncm91cCI6IDxNRU1CRVJTSElQX0dST1VQX0lOREVYPiwKICAgICAgImRzdCI6IHsKICAgICAgICAiaWQiOiAiPERTVF9JRD4iLAogICAgICAgICJ0aXRsZSI6ICI8RFNUX1RJVExFPiIKICAgICAgfSwKICAgICAgInNpZ25hdHVyZSI6ICI8U0lHTkFUVVJFX0lEPiIsCiAgICAgICJzaWduZXIiOiAiPFNJR05FUl9VU0VSTkFNRT4iLAogICAgICAicG9zaXRpb24iOiAiPFNJR05BVFVSRV9QT1NJVElPTj4iLAogICAgICAiZG9jdW1lbnQiOiB7CiAgICAgICAgImRpc3BsYXlfbmFtZSI6ICI8RE9DVU1FTlRfVElUTEU+IiwKICAgICAgICAiaWQiOiAiPERPQ1VNRU5UX0lEPiIsCiAgICAgICAgIm9yZGVyIjogPERPQ1VNRU5UX0lOREVYPgogICAgICB9LAogICAgICAiYXV0b21hdGljIjogPERFQ0xBUkVTX0lGX1RIRV9TSUdORVJfSVNfQVVUT01BVElDPiwKICAgICAgInBhZ2UiOiAiPFNJR05BVFVSRV9QQUdFPiIKICAgIH0KICB9CmBgYAoKIyMjIElkZW50aXRpZXMgc3RhdHVzIHVwZGF0ZQoKSWRlbnRpdGllcyBzZW5kIHRoZSBmb2xsb3dpbmcgc3RhdHVzIHVwZGF0ZXM6Ci0gKipJREVOVElUWV9SRVFVRVNUX0VOUk9MTEVEKio6IHdoZW5ldmVyIGFuIGlkZW50aXR5IHJlcXVlc3QgaXMgYWN0aXZhdGVkCgojIyMjIElERU5USVRZX1JFUVVFU1RfRU5ST0xMRUQKClNlbmRzIHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb246CgpgYGBqc29uCnsKICAgICJtZXNzYWdlIjogIklERU5USVRZX1JFUVVFU1RfRU5ST0xMRUQiLAogICAgImRhdGEiOiB7CiAgICAgICJzdGF0dXMiOiAiPFJFUVVFU1RfU1RBVFVTPiIsCiAgICAgICJyZXF1ZXN0IjogIjxSRVFVRVNUX0lEPiIsCiAgICAgICJ1c2VyIjogIjxBUFBMSUNBTlRfVVNFUk5BTUU+IgogICAgfQogIH0KYGBgCgojIyMgVXJsYmFjawoKU29tZXRpbWVzIG1heSBiZSBuZWNlc3NhcnkgdG8gbWFrZSBhIHJlZGlyZWN0IGFmdGVyIGFuIHVzZXIsIGZyb20gdGhlCnNpZ25hdHVyZSB0cmF5LCBoYXMgY29tcGxldGVkIGhpcyBvcGVyYXRpb25zIG9yIGFjdGl2YXRlZCBhIGNlcnRpZmljYXRlLgoKSWYgc2V0LCByZWRpcmVjdHMgY291bGQgaGFwcGVuIGluIDMgY2FzZXM6Ci0gYWZ0ZXIgYSBzaWduYXR1cmUgb3IgZGVjbGluZQotIGFmdGVyIGEgRFNUIGhhcyBiZWVuIHNpZ25lZCBieSBhbGwgdGhlIHNpZ25lcnMgb3IgY2FuY2VsZWQKLSBhZnRlciB0aGUgYWN0aXZhdGlvbiBvZiBhIGNlcnRpZmljYXRlCgpJbiB0aGUgZmlyc3QgdHdvIGNhc2VzIHRoZSB1cmxiYWNrIHJldHVybnMgdGhlIGZvbGxvd2luZyBpbmZvcm1hdGlvbiB0aHJvdWdoCmEgZGF0YSBmb3JtOgotICoqZHN0LWlkKio6IGlkIG9mIHRoZSBEU1QKLSAqKmRzdC11cmwqKjogc2lnbmF0dXJlX3RpY2tldCBvZiB0aGUgc2lnbmF0dXJlCi0gKipkc3Qtc3RhdHVzKio6IGN1cnJlbnQgc3RhdHVzIG9mIHRoZSBEU1QKLSAqKmRzdC1zaWduYXR1cmUtaWQqKjogaWQgb2YgdGhlIHNpZ25hdHVyZQotICoqZHN0LXNpZ25hdHVyZS1zdGF0dXMqKjogY3VycmVudCBzdGF0dXMgb2YgdGhlIHNpZ25hdHVyZQotICoqdXNlcioqOiB1c2VybmFtZSBvZiB0aGUgc2lnbmVyCi0gKipkZWNsaW5lLXJlYXNvbioqOiBpbiBjYXNlIG9mIGEgcmVmdXNlZCBEU1QgY29udGFpbnMgdGhlIHJlYXNvbiBvZiB0aGUKZGVjbGluZQoKSW4gdGhlIGxhc3QgY2FzZSB0aGUgdXJsYmFjayByZXR1cm5zIHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb24gdGhyb3VnaCBhCmRhdGEgZm9ybToKLSAqKnVzZXIqKjogdXNlcm5hbWUgb2YgdGhlIHVzZXIgYWN0aXZhdGVkIHRoZSBjZXJ0aWZpY2F0ZQotICoqaWRlbnRpdHktcHJvdmlkZXIqKjogdGhlIHByb3ZpZGVyIGhhcyBiZWVuIHVzZWQgdG8gaXNzdWUgdGhlIGNlcnRpZmljYXRlCi0gKippZGVudGl0eS1yZXF1ZXN0LWlkKio6IGlkIG9mIHRoZSBlbnJvbGxtZW50IHJlcXVlc3QKLSAqKmlkZW50aXR5LWlkKio6IGlkIG9mIHRoZSBuZXcgaWRlbnRpdHkKLSAqKmlkZW50aXR5LWxhYmVsKio6IHRoZSBsYWJlbCBhc3NpZ25lZCB0byB0aGUgaWRlbnRpdHkKLSAqKmlkZW50aXR5LWNlcnRpZmljYXRlKio6IHB1YmxpYyBrZXkgb2YgdGhlIGNlcnRpZmljYXRlCgoK  # noqa: E501
+    *Signing Today* is the perfect Digital Signature Gateway. Whenever in Your workflow You need to add one or more Digital Signatures to Your document, *Signing Today* is the right choice. You prepare Your documents, *Signing Today* takes care of all the rest: send invitations (`signature tickets`) to signers, collects their signatures, send You back the signed document. Integrating *Signing Today* in Your existing applications is very easy. Just follow these API specifications and get inspired by the many examples presented hereafter.   # noqa: E501
 
-    The version of the OpenAPI document: 1.5.0
-    Contact: smartcloud@bit4id.com
+    The version of the OpenAPI document: 2.0.0
     Generated by: https://openapi-generator.tech
 """
 
@@ -15,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from signing_today_client.configuration import Configuration
 
 
 class User(object):
@@ -32,168 +33,105 @@ class User(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'automatic': 'bool',
-        'created_by': 'str',
-        'email': 'str',
-        'first_name': 'str',
         'id': 'str',
-        'last_name': 'str',
-        'owner': 'bool',
-        'rao': 'bool',
-        'status': 'str',
-        'type': 'str',
-        'wallet': 'list[Identity]'
+        'username': 'str',
+        'domain': 'str',
+        'language': 'str',
+        'name': 'str',
+        'surname': 'str',
+        'email': 'str',
+        'phone': 'BigDecimal',
+        'role': 'str',
+        'groups': 'list[UserGroup]',
+        'capabilities': 'list[str]',
+        'created_by': 'str',
+        'created_at': 'datetime',
+        'deleted_at': 'datetime',
+        'automatic': 'bool',
+        'extra_data': 'dict(str, object)'
     }
 
     attribute_map = {
-        'automatic': 'automatic',
-        'created_by': 'created_by',
-        'email': 'email',
-        'first_name': 'first_name',
         'id': 'id',
-        'last_name': 'last_name',
-        'owner': 'owner',
-        'rao': 'rao',
-        'status': 'status',
-        'type': 'type',
-        'wallet': 'wallet'
+        'username': 'username',
+        'domain': 'domain',
+        'language': 'language',
+        'name': 'name',
+        'surname': 'surname',
+        'email': 'email',
+        'phone': 'phone',
+        'role': 'role',
+        'groups': 'groups',
+        'capabilities': 'capabilities',
+        'created_by': 'createdBy',
+        'created_at': 'createdAt',
+        'deleted_at': 'deletedAt',
+        'automatic': 'automatic',
+        'extra_data': 'extraData'
     }
 
-    def __init__(self, automatic=None, created_by=None, email=None, first_name=None, id=None, last_name=None, owner=None, rao=None, status=None, type=None, wallet=None):  # noqa: E501
+    def __init__(self, id=None, username=None, domain=None, language=None, name=None, surname=None, email=None, phone=None, role=None, groups=None, capabilities=None, created_by=None, created_at=None, deleted_at=None, automatic=None, extra_data=None, local_vars_configuration=None):  # noqa: E501
         """User - a model defined in OpenAPI"""  # noqa: E501
+        if local_vars_configuration is None:
+            local_vars_configuration = Configuration()
+        self.local_vars_configuration = local_vars_configuration
 
-        self._automatic = None
-        self._created_by = None
-        self._email = None
-        self._first_name = None
         self._id = None
-        self._last_name = None
-        self._owner = None
-        self._rao = None
-        self._status = None
-        self._type = None
-        self._wallet = None
+        self._username = None
+        self._domain = None
+        self._language = None
+        self._name = None
+        self._surname = None
+        self._email = None
+        self._phone = None
+        self._role = None
+        self._groups = None
+        self._capabilities = None
+        self._created_by = None
+        self._created_at = None
+        self._deleted_at = None
+        self._automatic = None
+        self._extra_data = None
         self.discriminator = None
 
-        if automatic is not None:
-            self.automatic = automatic
-        if created_by is not None:
-            self.created_by = created_by
+        if id is not None:
+            self.id = id
+        if username is not None:
+            self.username = username
+        if domain is not None:
+            self.domain = domain
+        if language is not None:
+            self.language = language
+        if name is not None:
+            self.name = name
+        if surname is not None:
+            self.surname = surname
         if email is not None:
             self.email = email
-        if first_name is not None:
-            self.first_name = first_name
-        self.id = id
-        if last_name is not None:
-            self.last_name = last_name
-        if owner is not None:
-            self.owner = owner
-        if rao is not None:
-            self.rao = rao
-        if status is not None:
-            self.status = status
-        if type is not None:
-            self.type = type
-        if wallet is not None:
-            self.wallet = wallet
-
-    @property
-    def automatic(self):
-        """Gets the automatic of this User.  # noqa: E501
-
-        If true indicates that the User is an _automatic_ one, thus the signature procedure will be different from a regular signer  # noqa: E501
-
-        :return: The automatic of this User.  # noqa: E501
-        :rtype: bool
-        """
-        return self._automatic
-
-    @automatic.setter
-    def automatic(self, automatic):
-        """Sets the automatic of this User.
-
-        If true indicates that the User is an _automatic_ one, thus the signature procedure will be different from a regular signer  # noqa: E501
-
-        :param automatic: The automatic of this User.  # noqa: E501
-        :type: bool
-        """
-
-        self._automatic = automatic
-
-    @property
-    def created_by(self):
-        """Gets the created_by of this User.  # noqa: E501
-
-        This field shows who created the User - _user_name@organization-id_. It may be a SigningToday system User as well  # noqa: E501
-
-        :return: The created_by of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._created_by
-
-    @created_by.setter
-    def created_by(self, created_by):
-        """Sets the created_by of this User.
-
-        This field shows who created the User - _user_name@organization-id_. It may be a SigningToday system User as well  # noqa: E501
-
-        :param created_by: The created_by of this User.  # noqa: E501
-        :type: str
-        """
-
-        self._created_by = created_by
-
-    @property
-    def email(self):
-        """Gets the email of this User.  # noqa: E501
-
-        The email associated to the User  # noqa: E501
-
-        :return: The email of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """Sets the email of this User.
-
-        The email associated to the User  # noqa: E501
-
-        :param email: The email of this User.  # noqa: E501
-        :type: str
-        """
-
-        self._email = email
-
-    @property
-    def first_name(self):
-        """Gets the first_name of this User.  # noqa: E501
-
-        First name of the User  # noqa: E501
-
-        :return: The first_name of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._first_name
-
-    @first_name.setter
-    def first_name(self, first_name):
-        """Sets the first_name of this User.
-
-        First name of the User  # noqa: E501
-
-        :param first_name: The first_name of this User.  # noqa: E501
-        :type: str
-        """
-
-        self._first_name = first_name
+        if phone is not None:
+            self.phone = phone
+        if role is not None:
+            self.role = role
+        if groups is not None:
+            self.groups = groups
+        if capabilities is not None:
+            self.capabilities = capabilities
+        if created_by is not None:
+            self.created_by = created_by
+        if created_at is not None:
+            self.created_at = created_at
+        if deleted_at is not None:
+            self.deleted_at = deleted_at
+        if automatic is not None:
+            self.automatic = automatic
+        if extra_data is not None:
+            self.extra_data = extra_data
 
     @property
     def id(self):
         """Gets the id of this User.  # noqa: E501
 
-        The uuid code that identifies the User  # noqa: E501
+        The unique id of the User  # noqa: E501
 
         :return: The id of this User.  # noqa: E501
         :rtype: str
@@ -204,153 +142,378 @@ class User(object):
     def id(self, id):
         """Sets the id of this User.
 
-        The uuid code that identifies the User  # noqa: E501
+        The unique id of the User  # noqa: E501
 
         :param id: The id of this User.  # noqa: E501
         :type: str
         """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
     @property
-    def last_name(self):
-        """Gets the last_name of this User.  # noqa: E501
+    def username(self):
+        """Gets the username of this User.  # noqa: E501
 
-        Last name of the User  # noqa: E501
+        The username of the User. The username is used to login  # noqa: E501
 
-        :return: The last_name of this User.  # noqa: E501
+        :return: The username of this User.  # noqa: E501
         :rtype: str
         """
-        return self._last_name
+        return self._username
 
-    @last_name.setter
-    def last_name(self, last_name):
-        """Sets the last_name of this User.
+    @username.setter
+    def username(self, username):
+        """Sets the username of this User.
 
-        Last name of the User  # noqa: E501
+        The username of the User. The username is used to login  # noqa: E501
 
-        :param last_name: The last_name of this User.  # noqa: E501
+        :param username: The username of this User.  # noqa: E501
         :type: str
         """
 
-        self._last_name = last_name
+        self._username = username
 
     @property
-    def owner(self):
-        """Gets the owner of this User.  # noqa: E501
+    def domain(self):
+        """Gets the domain of this User.  # noqa: E501
 
-        The _owner field_ gives to the User administrative permissions  # noqa: E501
+        The _domain_ is the Organization which a user or a DST belongs  # noqa: E501
 
-        :return: The owner of this User.  # noqa: E501
+        :return: The domain of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._domain
+
+    @domain.setter
+    def domain(self, domain):
+        """Sets the domain of this User.
+
+        The _domain_ is the Organization which a user or a DST belongs  # noqa: E501
+
+        :param domain: The domain of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._domain = domain
+
+    @property
+    def language(self):
+        """Gets the language of this User.  # noqa: E501
+
+        The default language of the User  # noqa: E501
+
+        :return: The language of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._language
+
+    @language.setter
+    def language(self, language):
+        """Sets the language of this User.
+
+        The default language of the User  # noqa: E501
+
+        :param language: The language of this User.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["it", "en", "es", "fr"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and language not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `language` ({0}), must be one of {1}"  # noqa: E501
+                .format(language, allowed_values)
+            )
+
+        self._language = language
+
+    @property
+    def name(self):
+        """Gets the name of this User.  # noqa: E501
+
+        The name of the User  # noqa: E501
+
+        :return: The name of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this User.
+
+        The name of the User  # noqa: E501
+
+        :param name: The name of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._name = name
+
+    @property
+    def surname(self):
+        """Gets the surname of this User.  # noqa: E501
+
+        The name of the User  # noqa: E501
+
+        :return: The surname of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._surname
+
+    @surname.setter
+    def surname(self, surname):
+        """Sets the surname of this User.
+
+        The name of the User  # noqa: E501
+
+        :param surname: The surname of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._surname = surname
+
+    @property
+    def email(self):
+        """Gets the email of this User.  # noqa: E501
+
+        The email address of the User  # noqa: E501
+
+        :return: The email of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """Sets the email of this User.
+
+        The email address of the User  # noqa: E501
+
+        :param email: The email of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._email = email
+
+    @property
+    def phone(self):
+        """Gets the phone of this User.  # noqa: E501
+
+        The phone number of the User  # noqa: E501
+
+        :return: The phone of this User.  # noqa: E501
+        :rtype: BigDecimal
+        """
+        return self._phone
+
+    @phone.setter
+    def phone(self, phone):
+        """Sets the phone of this User.
+
+        The phone number of the User  # noqa: E501
+
+        :param phone: The phone of this User.  # noqa: E501
+        :type: BigDecimal
+        """
+
+        self._phone = phone
+
+    @property
+    def role(self):
+        """Gets the role of this User.  # noqa: E501
+
+        The role of the User. The **admin** can create users, as well as DSTs and can sign. The **instructor** can create DSTs and sign. The **signer** can only sign documents.   # noqa: E501
+
+        :return: The role of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._role
+
+    @role.setter
+    def role(self, role):
+        """Sets the role of this User.
+
+        The role of the User. The **admin** can create users, as well as DSTs and can sign. The **instructor** can create DSTs and sign. The **signer** can only sign documents.   # noqa: E501
+
+        :param role: The role of this User.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["admin", "instructor", "signer"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and role not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `role` ({0}), must be one of {1}"  # noqa: E501
+                .format(role, allowed_values)
+            )
+
+        self._role = role
+
+    @property
+    def groups(self):
+        """Gets the groups of this User.  # noqa: E501
+
+        A group of users. This is useful during DSTs creation, it is possible to select a group as signers. This way all the components of that group have to sign the document  # noqa: E501
+
+        :return: The groups of this User.  # noqa: E501
+        :rtype: list[UserGroup]
+        """
+        return self._groups
+
+    @groups.setter
+    def groups(self, groups):
+        """Sets the groups of this User.
+
+        A group of users. This is useful during DSTs creation, it is possible to select a group as signers. This way all the components of that group have to sign the document  # noqa: E501
+
+        :param groups: The groups of this User.  # noqa: E501
+        :type: list[UserGroup]
+        """
+
+        self._groups = groups
+
+    @property
+    def capabilities(self):
+        """Gets the capabilities of this User.  # noqa: E501
+
+        The capabilities represents the action a user is able to do  # noqa: E501
+
+        :return: The capabilities of this User.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._capabilities
+
+    @capabilities.setter
+    def capabilities(self, capabilities):
+        """Sets the capabilities of this User.
+
+        The capabilities represents the action a user is able to do  # noqa: E501
+
+        :param capabilities: The capabilities of this User.  # noqa: E501
+        :type: list[str]
+        """
+        allowed_values = ["user.pwd.clear", "user.create.all", "user.access.all", "user.delete.all", "dst.list.all", "dst.delete.all", "dst.create.modify_all", "devices.list.all", "devices.delete.all", "organizations.access.write.user"]  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                not set(capabilities).issubset(set(allowed_values))):  # noqa: E501
+            raise ValueError(
+                "Invalid values for `capabilities` [{0}], must be a subset of [{1}]"  # noqa: E501
+                .format(", ".join(map(str, set(capabilities) - set(allowed_values))),  # noqa: E501
+                        ", ".join(map(str, allowed_values)))
+            )
+
+        self._capabilities = capabilities
+
+    @property
+    def created_by(self):
+        """Gets the created_by of this User.  # noqa: E501
+
+        The one which created the User  # noqa: E501
+
+        :return: The created_by of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._created_by
+
+    @created_by.setter
+    def created_by(self, created_by):
+        """Sets the created_by of this User.
+
+        The one which created the User  # noqa: E501
+
+        :param created_by: The created_by of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._created_by = created_by
+
+    @property
+    def created_at(self):
+        """Gets the created_at of this User.  # noqa: E501
+
+        The date of the creation of the User  # noqa: E501
+
+        :return: The created_at of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_at
+
+    @created_at.setter
+    def created_at(self, created_at):
+        """Sets the created_at of this User.
+
+        The date of the creation of the User  # noqa: E501
+
+        :param created_at: The created_at of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._created_at = created_at
+
+    @property
+    def deleted_at(self):
+        """Gets the deleted_at of this User.  # noqa: E501
+
+        The date of deletion of the User  # noqa: E501
+
+        :return: The deleted_at of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._deleted_at
+
+    @deleted_at.setter
+    def deleted_at(self, deleted_at):
+        """Sets the deleted_at of this User.
+
+        The date of deletion of the User  # noqa: E501
+
+        :param deleted_at: The deleted_at of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._deleted_at = deleted_at
+
+    @property
+    def automatic(self):
+        """Gets the automatic of this User.  # noqa: E501
+
+        If true the user is automatic  # noqa: E501
+
+        :return: The automatic of this User.  # noqa: E501
         :rtype: bool
         """
-        return self._owner
+        return self._automatic
 
-    @owner.setter
-    def owner(self, owner):
-        """Sets the owner of this User.
+    @automatic.setter
+    def automatic(self, automatic):
+        """Sets the automatic of this User.
 
-        The _owner field_ gives to the User administrative permissions  # noqa: E501
+        If true the user is automatic  # noqa: E501
 
-        :param owner: The owner of this User.  # noqa: E501
+        :param automatic: The automatic of this User.  # noqa: E501
         :type: bool
         """
 
-        self._owner = owner
+        self._automatic = automatic
 
     @property
-    def rao(self):
-        """Gets the rao of this User.  # noqa: E501
+    def extra_data(self):
+        """Gets the extra_data of this User.  # noqa: E501
 
-        The _rao field_ identifies a RAO User, the one can associate identities to the other users  # noqa: E501
+        Extra data associated to the User  # noqa: E501
 
-        :return: The rao of this User.  # noqa: E501
-        :rtype: bool
+        :return: The extra_data of this User.  # noqa: E501
+        :rtype: dict(str, object)
         """
-        return self._rao
+        return self._extra_data
 
-    @rao.setter
-    def rao(self, rao):
-        """Sets the rao of this User.
+    @extra_data.setter
+    def extra_data(self, extra_data):
+        """Sets the extra_data of this User.
 
-        The _rao field_ identifies a RAO User, the one can associate identities to the other users  # noqa: E501
+        Extra data associated to the User  # noqa: E501
 
-        :param rao: The rao of this User.  # noqa: E501
-        :type: bool
-        """
-
-        self._rao = rao
-
-    @property
-    def status(self):
-        """Gets the status of this User.  # noqa: E501
-
-        The status of the User  # noqa: E501
-
-        :return: The status of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this User.
-
-        The status of the User  # noqa: E501
-
-        :param status: The status of this User.  # noqa: E501
-        :type: str
+        :param extra_data: The extra_data of this User.  # noqa: E501
+        :type: dict(str, object)
         """
 
-        self._status = status
-
-    @property
-    def type(self):
-        """Gets the type of this User.  # noqa: E501
-
-        The _type field_ identifies the permissions the User have  # noqa: E501
-
-        :return: The type of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """Sets the type of this User.
-
-        The _type field_ identifies the permissions the User have  # noqa: E501
-
-        :param type: The type of this User.  # noqa: E501
-        :type: str
-        """
-
-        self._type = type
-
-    @property
-    def wallet(self):
-        """Gets the wallet of this User.  # noqa: E501
-
-        The wallet of an User identifies its portfolio of identities  # noqa: E501
-
-        :return: The wallet of this User.  # noqa: E501
-        :rtype: list[Identity]
-        """
-        return self._wallet
-
-    @wallet.setter
-    def wallet(self, wallet):
-        """Sets the wallet of this User.
-
-        The wallet of an User identifies its portfolio of identities  # noqa: E501
-
-        :param wallet: The wallet of this User.  # noqa: E501
-        :type: list[Identity]
-        """
-
-        self._wallet = wallet
+        self._extra_data = extra_data
 
     def to_dict(self):
         """Returns the model properties as a dict"""
@@ -389,8 +552,11 @@ class User(object):
         if not isinstance(other, User):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, User):
+            return True
+
+        return self.to_dict() != other.to_dict()
