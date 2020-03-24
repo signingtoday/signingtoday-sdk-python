@@ -32,7 +32,7 @@ organization.
 **Example**
 
 ```json
-$ curl https://sandbox.signingtoday.com/api/v1/my-org/users \
+$ curl https://sandbox.signingtoday.com/api/v1/my-org/users \\
     -H 'Authorization: Token <access-token>'
 ```
 
@@ -57,29 +57,29 @@ result like this:
 
 ```json
 {
-    "pagination": {
-      "count": 75,
-      "previous": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=1",
-      "next": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=3",
-      "pages": 8,
-      "page": 2
+    \"pagination\": {
+      \"count\": 75,
+      \"previous\": \"https://sandbox.signingtoday.com/api/v1/my-org/users?page=1\",
+      \"next\": \"https://sandbox.signingtoday.com/api/v1/my-org/users?page=3\",
+      \"pages\": 8,
+      \"page\": 2
     },
-    "meta": {
-      "code": 200
+    \"meta\": {
+      \"code\": 200
     },
-    "data": [
+    \"data\": [
       {
-        "id": "jdo",
-        "status": "enabled",
-        "type": "Basic user account",
-        "email": johndoe@dummyemail.com,
-        "first_name": "John",
-        "last_name": "Doe",
-        "wallet": [],
-        "created_by": "system",
-        "owner": false,
-        "automatic": false,
-        "rao": false
+        \"id\": \"jdo\",
+        \"status\": \"enabled\",
+        \"type\": \"Basic user account\",
+        \"email\": johndoe@dummyemail.com,
+        \"first_name\": \"John\",
+        \"last_name\": \"Doe\",
+        \"wallet\": [],
+        \"created_by\": \"system\",
+        \"owner\": false,
+        \"automatic\": false,
+        \"rao\": false
       },
       ...
     ]
@@ -102,12 +102,12 @@ The general structure of *Pagination* object is the following:
 
 ```json
 {
-    "pagination": {
-      "count": 75,
-      "previous": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=1",
-      "next": "https://sandbox.signingtoday.com/api/v1/my-org/users?page=3",
-      "pages": 8,
-      "page": 2
+    \"pagination\": {
+      \"count\": 75,
+      \"previous\": \"https://sandbox.signingtoday.com/api/v1/my-org/users?page=1\",
+      \"next\": \"https://sandbox.signingtoday.com/api/v1/my-org/users?page=3\",
+      \"pages\": 8,
+      \"page\": 2
     },
     ...
   }
@@ -122,10 +122,10 @@ information, as follows:
 
 ```json
 {
-    "meta": {
-      "code": <HTTP STATUS CODE>,
-      "error_type": <STATUS CODE DESCRIPTION>,
-      "error_message": <ERROR DESCRIPTION>
+    \"meta\": {
+      \"code\": <HTTP STATUS CODE>,
+      \"error_type\": <STATUS CODE DESCRIPTION>,
+      \"error_message\": <ERROR DESCRIPTION>
     }
   }
 ```
@@ -165,9 +165,9 @@ about DSTs and/or identities. You can configurate it on application token
 level, in the *webhook* field, as follows:
 
 ```json
-"webhooks": {
-  "dst": "URL",
-  "identity": "URL"
+\"webhooks\": {
+  \"dst\": \"URL\",
+  \"identity\": \"URL\"
   }
 ```
 
@@ -184,11 +184,11 @@ Sends the following information:
 
 ```json
 {
-    "message": "DST_STATUS_CHANGED",
-    "data": {
-      "status": "<DST_STATUS>",
-      "dst": "<DST_ID>",
-      "reason": "<DST_REASON>"
+    \"message\": \"DST_STATUS_CHANGED\",
+    \"data\": {
+      \"status\": \"<DST_STATUS>\",
+      \"dst\": \"<DST_ID>\",
+      \"reason\": \"<DST_REASON>\"
     }
   }
 ```
@@ -199,24 +199,24 @@ Sends the following information:
 
 ```json
 {
-    "message": "SIGNATURE_STATUS_CHANGED",
-    "data": {
-      "status": "<SIGNATURE_STATUS>",
-      "group": <MEMBERSHIP_GROUP_INDEX>,
-      "dst": {
-        "id": "<DST_ID>",
-        "title": "<DST_TITLE>"
+    \"message\": \"SIGNATURE_STATUS_CHANGED\",
+    \"data\": {
+      \"status\": \"<SIGNATURE_STATUS>\",
+      \"group\": <MEMBERSHIP_GROUP_INDEX>,
+      \"dst\": {
+        \"id\": \"<DST_ID>\",
+        \"title\": \"<DST_TITLE>\"
       },
-      "signature": "<SIGNATURE_ID>",
-      "signer": "<SIGNER_USERNAME>",
-      "position": "<SIGNATURE_POSITION>",
-      "document": {
-        "display_name": "<DOCUMENT_TITLE>",
-        "id": "<DOCUMENT_ID>",
-        "order": <DOCUMENT_INDEX>
+      \"signature\": \"<SIGNATURE_ID>\",
+      \"signer\": \"<SIGNER_USERNAME>\",
+      \"position\": \"<SIGNATURE_POSITION>\",
+      \"document\": {
+        \"display_name\": \"<DOCUMENT_TITLE>\",
+        \"id\": \"<DOCUMENT_ID>\",
+        \"order\": <DOCUMENT_INDEX>
       },
-      "automatic": <DECLARES_IF_THE_SIGNER_IS_AUTOMATIC>,
-      "page": "<SIGNATURE_PAGE>"
+      \"automatic\": <DECLARES_IF_THE_SIGNER_IS_AUTOMATIC>,
+      \"page\": \"<SIGNATURE_PAGE>\"
     }
   }
 ```
@@ -232,11 +232,11 @@ Sends the following information:
 
 ```json
 {
-    "message": "IDENTITY_REQUEST_ENROLLED",
-    "data": {
-      "status": "<REQUEST_STATUS>",
-      "request": "<REQUEST_ID>",
-      "user": "<APPLICANT_USERNAME>"
+    \"message\": \"IDENTITY_REQUEST_ENROLLED\",
+    \"data\": {
+      \"status\": \"<REQUEST_STATUS>\",
+      \"request\": \"<REQUEST_ID>\",
+      \"user\": \"<APPLICANT_USERNAME>\"
     }
   }
 ```
@@ -272,63 +272,88 @@ data form:
 - **identity-certificate**: public key of the certificate
 
 
+
+
 This Python package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+
 - API version: 1.5.0
 - Package version: 1.0.0
 - Build package: org.openapitools.codegen.languages.PythonClientCodegen
 For more information, please visit [https://signing.today/contacts/](https://signing.today/contacts/)
+
 ## Requirements.
+
 Python 2.7 and 3.4+
+
 ## Installation & Usage
 ### pip install
-If the python package is hosted on Github, you can install directly from Github
+
+If the python package is hosted on a repository, you can install directly using:
+
 ```sh
 pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 ```
 (you may need to run `pip` with root permission: `sudo pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git`)
-Then import the package:
-```python
-import signing_today_client 
-```
-### Setuptools
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
-```sh
-python setup.py install --user
-```
-(or `sudo python setup.py install` to install the package for all users)
+
 Then import the package:
 ```python
 import signing_today_client
 ```
+
+### Setuptools
+
+Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+
+```sh
+python setup.py install --user
+```
+(or `sudo python setup.py install` to install the package for all users)
+
+Then import the package:
+```python
+import signing_today_client
+```
+
 ## Getting Started
+
 Please follow the [installation procedure](#installation--usage) and then run the following:
+
 ```python
 from __future__ import print_function
 import time
 import signing_today_client
 from signing_today_client.rest import ApiException
 from pprint import pprint
+
 configuration = signing_today_client.Configuration()
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.IdentitiesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.IdentitiesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 identity_id = signing_today_client.Id() # Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
 inline_object = signing_today_client.InlineObject() # InlineObject | 
-try:
-    # Associate an appearance to an identity
-    api_response = api_instance.associate_appearance(organization_id, identity_id, inline_object)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling IdentitiesApi->associate_appearance: %s\n" % e)
+
+    try:
+        # Associate an appearance to an identity
+        api_response = api_instance.associate_appearance(organization_id, identity_id, inline_object)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling IdentitiesApi->associate_appearance: %s\n" % e)
+    
 ```
+
 ## Documentation for API Endpoints
+
 All URIs are relative to *https://sandbox.signingtoday.com/api/v1*
+
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *IdentitiesApi* | [**associate_appearance**](docs/IdentitiesApi.md#associate_appearance) | **POST** /{organization-id}/identities/{identity-id}/appearance | Associate an appearance to an identity
@@ -343,12 +368,14 @@ Class | Method | HTTP request | Description
 *IdentitiesApi* | [**list_identities**](docs/IdentitiesApi.md#list_identities) | **GET** /{organization-id}/identities | Enumerate the identities of an organization
 *IdentitiesApi* | [**list_user_enrollments**](docs/IdentitiesApi.md#list_user_enrollments) | **GET** /{organization-id}/users/{user-id}/identity-requests | List the enrollments of an user
 *IdentitiesApi* | [**list_user_identities**](docs/IdentitiesApi.md#list_user_identities) | **GET** /{organization-id}/users/{user-id}/wallet | Enumerate the identities of an user
+*IdentitiesApi* | [**renew_identity**](docs/IdentitiesApi.md#renew_identity) | **POST** /{organization-id}/identity-requests/{enrollment-id}/renew | Renew an Identity
 *IdentitiesApi* | [**request_enrollment**](docs/IdentitiesApi.md#request_enrollment) | **POST** /{organization-id}/enroll | Submit an enrollment request
 *OrganizationsApi* | [**get_organization**](docs/OrganizationsApi.md#get_organization) | **GET** /organizations/{organization-id} | Get the settings of an oraganization
 *OrganizationsApi* | [**patch_organization**](docs/OrganizationsApi.md#patch_organization) | **PATCH** /organizations/{organization-id} | Edit the settings of an organization
 *SignatureTransactionsApi* | [**cancel_dst**](docs/SignatureTransactionsApi.md#cancel_dst) | **POST** /{organization-id}/signature-transactions/{dst-id}/cancel | Mark a DST as canceled
 *SignatureTransactionsApi* | [**create_dst**](docs/SignatureTransactionsApi.md#create_dst) | **POST** /{organization-id}/signature-transactions | Create a Digital Signature Transaction
 *SignatureTransactionsApi* | [**delete_dst**](docs/SignatureTransactionsApi.md#delete_dst) | **DELETE** /{organization-id}/signature-transactions/{dst-id} | Delete a Digital Signature Transaction
+*SignatureTransactionsApi* | [**delete_dst_resources**](docs/SignatureTransactionsApi.md#delete_dst_resources) | **DELETE** /{organization-id}/signature-transactions/{dst-id}/resources | Delete the resources of a DST
 *SignatureTransactionsApi* | [**get_document**](docs/SignatureTransactionsApi.md#get_document) | **GET** /{organization-id}/documents/{document-id}/download | Download a document from a DST
 *SignatureTransactionsApi* | [**get_dst**](docs/SignatureTransactionsApi.md#get_dst) | **GET** /{organization-id}/signature-transactions/{dst-id} | Get information about a DST
 *SignatureTransactionsApi* | [**list_ds_ts**](docs/SignatureTransactionsApi.md#list_ds_ts) | **GET** /{organization-id}/signature-transactions | List the DSTs of an organization
@@ -379,12 +406,14 @@ Class | Method | HTTP request | Description
 *Bit4idPathgroupIdentitiesApi* | [**list_identities**](docs/Bit4idPathgroupIdentitiesApi.md#list_identities) | **GET** /{organization-id}/identities | Enumerate the identities of an organization
 *Bit4idPathgroupIdentitiesApi* | [**list_user_enrollments**](docs/Bit4idPathgroupIdentitiesApi.md#list_user_enrollments) | **GET** /{organization-id}/users/{user-id}/identity-requests | List the enrollments of an user
 *Bit4idPathgroupIdentitiesApi* | [**list_user_identities**](docs/Bit4idPathgroupIdentitiesApi.md#list_user_identities) | **GET** /{organization-id}/users/{user-id}/wallet | Enumerate the identities of an user
+*Bit4idPathgroupIdentitiesApi* | [**renew_identity**](docs/Bit4idPathgroupIdentitiesApi.md#renew_identity) | **POST** /{organization-id}/identity-requests/{enrollment-id}/renew | Renew an Identity
 *Bit4idPathgroupIdentitiesApi* | [**request_enrollment**](docs/Bit4idPathgroupIdentitiesApi.md#request_enrollment) | **POST** /{organization-id}/enroll | Submit an enrollment request
 *Bit4idPathgroupOrganizationsApi* | [**get_organization**](docs/Bit4idPathgroupOrganizationsApi.md#get_organization) | **GET** /organizations/{organization-id} | Get the settings of an oraganization
 *Bit4idPathgroupOrganizationsApi* | [**patch_organization**](docs/Bit4idPathgroupOrganizationsApi.md#patch_organization) | **PATCH** /organizations/{organization-id} | Edit the settings of an organization
 *Bit4idPathgroupSignatureTransactionsApi* | [**cancel_dst**](docs/Bit4idPathgroupSignatureTransactionsApi.md#cancel_dst) | **POST** /{organization-id}/signature-transactions/{dst-id}/cancel | Mark a DST as canceled
 *Bit4idPathgroupSignatureTransactionsApi* | [**create_dst**](docs/Bit4idPathgroupSignatureTransactionsApi.md#create_dst) | **POST** /{organization-id}/signature-transactions | Create a Digital Signature Transaction
 *Bit4idPathgroupSignatureTransactionsApi* | [**delete_dst**](docs/Bit4idPathgroupSignatureTransactionsApi.md#delete_dst) | **DELETE** /{organization-id}/signature-transactions/{dst-id} | Delete a Digital Signature Transaction
+*Bit4idPathgroupSignatureTransactionsApi* | [**delete_dst_resources**](docs/Bit4idPathgroupSignatureTransactionsApi.md#delete_dst_resources) | **DELETE** /{organization-id}/signature-transactions/{dst-id}/resources | Delete the resources of a DST
 *Bit4idPathgroupSignatureTransactionsApi* | [**get_document**](docs/Bit4idPathgroupSignatureTransactionsApi.md#get_document) | **GET** /{organization-id}/documents/{document-id}/download | Download a document from a DST
 *Bit4idPathgroupSignatureTransactionsApi* | [**get_dst**](docs/Bit4idPathgroupSignatureTransactionsApi.md#get_dst) | **GET** /{organization-id}/signature-transactions/{dst-id} | Get information about a DST
 *Bit4idPathgroupSignatureTransactionsApi* | [**list_ds_ts**](docs/Bit4idPathgroupSignatureTransactionsApi.md#list_ds_ts) | **GET** /{organization-id}/signature-transactions | List the DSTs of an organization
@@ -403,13 +432,14 @@ Class | Method | HTTP request | Description
 *Bit4idPathgroupUsersApi* | [**get_user**](docs/Bit4idPathgroupUsersApi.md#get_user) | **GET** /{organization-id}/users/{user-id} | Get information about an user
 *Bit4idPathgroupUsersApi* | [**list_users**](docs/Bit4idPathgroupUsersApi.md#list_users) | **GET** /{organization-id}/users | Enumerate the users of an organization
 *Bit4idPathgroupUsersApi* | [**update_user**](docs/Bit4idPathgroupUsersApi.md#update_user) | **PUT** /{organization-id}/users/{user-id} | Edit one or more user properties
+
+
 ## Documentation For Models
+
  - [AutomaticSignature](docs/AutomaticSignature.md)
  - [CreateIdentitybyToken](docs/CreateIdentitybyToken.md)
  - [CreateSignatureTransaction](docs/CreateSignatureTransaction.md)
  - [CreateToken](docs/CreateToken.md)
- - [CreateTokenHttpOptions](docs/CreateTokenHttpOptions.md)
- - [CreateTokenWebhooks](docs/CreateTokenWebhooks.md)
  - [CreateUser](docs/CreateUser.md)
  - [Document](docs/Document.md)
  - [Document1](docs/Document1.md)
@@ -424,28 +454,30 @@ Class | Method | HTTP request | Description
  - [InlineObject2](docs/InlineObject2.md)
  - [InlineObject3](docs/InlineObject3.md)
  - [InlineObject4](docs/InlineObject4.md)
+ - [InlineObject5](docs/InlineObject5.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse20010](docs/InlineResponse20010.md)
- - [InlineResponse20010Data](docs/InlineResponse20010Data.md)
  - [InlineResponse20011](docs/InlineResponse20011.md)
  - [InlineResponse20012](docs/InlineResponse20012.md)
+ - [InlineResponse20013](docs/InlineResponse20013.md)
+ - [InlineResponse20013Data](docs/InlineResponse20013Data.md)
  - [InlineResponse2002](docs/InlineResponse2002.md)
  - [InlineResponse2003](docs/InlineResponse2003.md)
  - [InlineResponse2004](docs/InlineResponse2004.md)
  - [InlineResponse2005](docs/InlineResponse2005.md)
  - [InlineResponse2006](docs/InlineResponse2006.md)
  - [InlineResponse2007](docs/InlineResponse2007.md)
- - [InlineResponse2007Meta](docs/InlineResponse2007Meta.md)
  - [InlineResponse2008](docs/InlineResponse2008.md)
  - [InlineResponse2009](docs/InlineResponse2009.md)
+ - [InlineResponse2009Meta](docs/InlineResponse2009Meta.md)
  - [InlineResponse201](docs/InlineResponse201.md)
  - [InlineResponse2011](docs/InlineResponse2011.md)
  - [InlineResponse2012](docs/InlineResponse2012.md)
  - [InlineResponse2013](docs/InlineResponse2013.md)
  - [InlineResponse2014](docs/InlineResponse2014.md)
+ - [InlineResponse2014Data](docs/InlineResponse2014Data.md)
  - [InlineResponse2015](docs/InlineResponse2015.md)
- - [InlineResponse201Data](docs/InlineResponse201Data.md)
  - [InlineResponse401](docs/InlineResponse401.md)
  - [InlineResponse403](docs/InlineResponse403.md)
  - [InlineResponse404](docs/InlineResponse404.md)
@@ -463,14 +495,26 @@ Class | Method | HTTP request | Description
  - [SignatureTransaction](docs/SignatureTransaction.md)
  - [SignatureWhere](docs/SignatureWhere.md)
  - [Token](docs/Token.md)
+ - [TokenHttpOptions](docs/TokenHttpOptions.md)
+ - [TokenWebhooks](docs/TokenWebhooks.md)
  - [UpdateOrganization](docs/UpdateOrganization.md)
  - [UpdateToken](docs/UpdateToken.md)
  - [UpdateUser](docs/UpdateUser.md)
  - [User](docs/User.md)
+
+
 ## Documentation For Authorization
+
+
 ## ApiKeyAuth
+
 - **Type**: API key
 - **API key parameter name**: Authorization
 - **Location**: HTTP header
+
+
 ## Author
+
 smartcloud@bit4id.com
+
+

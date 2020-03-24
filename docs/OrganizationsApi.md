@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Get the settings of an oraganization
 
-This API allows to obtain the settings of an organization, such as:   - _default_rao_ : the default rao user of the organization   - _dst_default_months_ : default deadline of a dst before its expiration   - _logo_ : the logo of the organization 
+This API allows to obtain the settings of an organization, such as:   - _default_rao_ : the default rao user of the organization   - _dst_default_days_ : default deadline of a dst before its expiration   - _logo_ : the logo of the organization 
 
 ### Example
 
@@ -32,16 +32,18 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.OrganizationsApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.OrganizationsApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 
-try:
-    # Get the settings of an oraganization
-    api_response = api_instance.get_organization(organization_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
+    try:
+        # Get the settings of an oraganization
+        api_response = api_instance.get_organization(organization_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
 ```
 
 ### Parameters
@@ -97,17 +99,19 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.OrganizationsApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.OrganizationsApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 update_organization = signing_today_client.UpdateOrganization() # UpdateOrganization | The settings of the organization to edit
 
-try:
-    # Edit the settings of an organization
-    api_response = api_instance.patch_organization(organization_id, update_organization)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling OrganizationsApi->patch_organization: %s\n" % e)
+    try:
+        # Edit the settings of an organization
+        api_response = api_instance.patch_organization(organization_id, update_organization)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OrganizationsApi->patch_organization: %s\n" % e)
 ```
 
 ### Parameters

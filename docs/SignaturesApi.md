@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_channel**
-> InlineResponse201 create_channel(organization_id, dst_id)
+> InlineResponse2014 create_channel(organization_id, dst_id)
 
 Create a channel
 
@@ -35,17 +35,19 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.SignaturesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.SignaturesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 dst_id = signing_today_client.Id() # Id | The **dst-id** is the uuid code that identifies a digital signature transaction. It is used as a path parameter to filter the requested operation to the specified **dst** 
 
-try:
-    # Create a channel
-    api_response = api_instance.create_channel(organization_id, dst_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SignaturesApi->create_channel: %s\n" % e)
+    try:
+        # Create a channel
+        api_response = api_instance.create_channel(organization_id, dst_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling SignaturesApi->create_channel: %s\n" % e)
 ```
 
 ### Parameters
@@ -57,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**InlineResponse2014**](InlineResponse2014.md)
 
 ### Authorization
 
@@ -79,7 +81,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **decline_dst**
-> InlineResponse2013 decline_dst(organization_id, signature_id, inline_object2)
+> InlineResponse2013 decline_dst(organization_id, signature_id, inline_object5)
 
 Decline a Digital Signature Transaction
 
@@ -102,18 +104,20 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.SignaturesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.SignaturesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 signature_id = signing_today_client.Id() # Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
-inline_object2 = signing_today_client.InlineObject2() # InlineObject2 | 
+inline_object5 = signing_today_client.InlineObject5() # InlineObject5 | 
 
-try:
-    # Decline a Digital Signature Transaction
-    api_response = api_instance.decline_dst(organization_id, signature_id, inline_object2)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SignaturesApi->decline_dst: %s\n" % e)
+    try:
+        # Decline a Digital Signature Transaction
+        api_response = api_instance.decline_dst(organization_id, signature_id, inline_object5)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling SignaturesApi->decline_dst: %s\n" % e)
 ```
 
 ### Parameters
@@ -122,7 +126,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_id** | **str**| The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  | [default to &#39;api-demo&#39;]
  **signature_id** | [**Id**](.md)| The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction  | 
- **inline_object2** | [**InlineObject2**](InlineObject2.md)|  | 
+ **inline_object5** | [**InlineObject5**](InlineObject5.md)|  | 
 
 ### Return type
 
@@ -150,7 +154,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **perform_dst**
-> InlineResponse2008 perform_dst(organization_id, signature_id, automatic_signature)
+> InlineResponse20011 perform_dst(organization_id, signature_id, automatic_signature)
 
 Sign a DST with an automatic signer
 
@@ -173,18 +177,20 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.SignaturesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.SignaturesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 signature_id = signing_today_client.Id() # Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
 automatic_signature = signing_today_client.AutomaticSignature() # AutomaticSignature | Automatic Signature description
 
-try:
-    # Sign a DST with an automatic signer
-    api_response = api_instance.perform_dst(organization_id, signature_id, automatic_signature)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SignaturesApi->perform_dst: %s\n" % e)
+    try:
+        # Sign a DST with an automatic signer
+        api_response = api_instance.perform_dst(organization_id, signature_id, automatic_signature)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling SignaturesApi->perform_dst: %s\n" % e)
 ```
 
 ### Parameters
@@ -197,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -220,7 +226,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **perform_signature**
-> InlineResponse2009 perform_signature(organization_id, signature_id, identity_id, inline_object3)
+> InlineResponse20012 perform_signature(organization_id, signature_id, identity_id, inline_object3)
 
 Perform a Signature
 
@@ -243,19 +249,21 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.SignaturesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.SignaturesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 signature_id = signing_today_client.Id() # Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
 identity_id = signing_today_client.Id() # Id | The **identity-id** is the uuid code that identifies an identity in the wallet of an user. It is, as well, used to restrict the requested operation to the scope of that identity 
 inline_object3 = signing_today_client.InlineObject3() # InlineObject3 | 
 
-try:
-    # Perform a Signature
-    api_response = api_instance.perform_signature(organization_id, signature_id, identity_id, inline_object3)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SignaturesApi->perform_signature: %s\n" % e)
+    try:
+        # Perform a Signature
+        api_response = api_instance.perform_signature(organization_id, signature_id, identity_id, inline_object3)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling SignaturesApi->perform_signature: %s\n" % e)
 ```
 
 ### Parameters
@@ -269,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -292,7 +300,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **perform_signature_with_session**
-> InlineResponse20010 perform_signature_with_session(organization_id, signature_id, inline_object4)
+> InlineResponse20013 perform_signature_with_session(organization_id, signature_id, inline_object4)
 
 Perform a Signature with session
 
@@ -315,18 +323,20 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # Defining host is optional and default to https://sandbox.signingtoday.com/api/v1
 configuration.host = "https://sandbox.signingtoday.com/api/v1"
-# Create an instance of the API class
-api_instance = signing_today_client.SignaturesApi(signing_today_client.ApiClient(configuration))
-organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
+# Enter a context with an instance of the API client
+with signing_today_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = signing_today_client.SignaturesApi(api_client)
+    organization_id = 'api-demo' # str | The **organization-id** represents an organization that is included in the SigninToday application, also know as **slug** and it is used as a path parameter to restrict the asked functionality to the specified organization  (default to 'api-demo')
 signature_id = signing_today_client.Id() # Id | The **signature-id** is the uuid code that identifies a signature that has to be performed into a digital signature transaction. It is usually used in the API endpoints to perform, decline or cancel a digital signature transaction 
 inline_object4 = signing_today_client.InlineObject4() # InlineObject4 | 
 
-try:
-    # Perform a Signature with session
-    api_response = api_instance.perform_signature_with_session(organization_id, signature_id, inline_object4)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SignaturesApi->perform_signature_with_session: %s\n" % e)
+    try:
+        # Perform a Signature with session
+        api_response = api_instance.perform_signature_with_session(organization_id, signature_id, inline_object4)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling SignaturesApi->perform_signature_with_session: %s\n" % e)
 ```
 
 ### Parameters
@@ -339,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
