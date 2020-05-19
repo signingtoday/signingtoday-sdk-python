@@ -271,6 +271,13 @@ data form:
 - **identity-label**: the label assigned to the identity
 - **identity-certificate**: public key of the certificate
 
+## SUPPORTED Provider
+
+The supported providers are:
+  - *_aruba_*
+  - *infocert*
+  - *namirial*
+  - *uanataca*
 
 
 
@@ -494,6 +501,8 @@ Class | Method | HTTP request | Description
  - [SignatureImplementationResponseChannel](docs/SignatureImplementationResponseChannel.md)
  - [SignatureTransaction](docs/SignatureTransaction.md)
  - [SignatureWhere](docs/SignatureWhere.md)
+ - [SignatureWhereFont](docs/SignatureWhereFont.md)
+ - [SignatureWhereText](docs/SignatureWhereText.md)
  - [Token](docs/Token.md)
  - [TokenHttpOptions](docs/TokenHttpOptions.md)
  - [TokenWebhooks](docs/TokenWebhooks.md)
